@@ -14,18 +14,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MyConfig implements WebMvcConfigurer {
 
-    @Bean
-    public FormHttpMessageConverter formHttpMessageConverter() {
-        return new FormHttpMessageConverter();
-    }
+//    @Bean
+//    public FormHttpMessageConverter formHttpMessageConverter() {
+//        return new FormHttpMessageConverter();
+//    }
     @Bean
     public ModelMapper modelMapper(){
         return new ModelMapper();
     }
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-    }
+//    @Bean
+//    public ObjectMapper objectMapper() {
+//        return new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+//    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

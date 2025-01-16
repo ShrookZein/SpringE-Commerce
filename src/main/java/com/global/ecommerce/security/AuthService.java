@@ -70,7 +70,7 @@ public class AuthService {
         User user=userRepo.findByEmail(login).get();
 
 //        ResponseUserDto responseUserDto=ResponseUserDto.builder()
-//                .fullName().email()..roles().build();
+//                .fullName().email().user.roles().build();
         UserResponseDto userResponseDto=modelMapper.map(user, UserResponseDto.class);
 
         return JWTResponseDto.builder()
@@ -165,10 +165,11 @@ public class AuthService {
     }
 
 
-    public void logoutUser(String refreshToken) {
-        Optional<TokenInfo> tokenInfo = tokenInfoService.findByRefreshToken(refreshToken);
-        if (tokenInfo.isPresent()) {
-            tokenInfoService.deleteById(tokenInfo.get().getId());
+    public void logoutUser(String accessToken) {
+        Optional<TokenInfo> tokenInfo = tokenInfoService.findByAccessToken(accessToken);
+        if (tokenInfo.isEmpty()) {
+            throw new RuntimeException("Token not existing");
         }
+        tokenInfoService.deleteById(tokenInfo.get().getId());
     }
 }

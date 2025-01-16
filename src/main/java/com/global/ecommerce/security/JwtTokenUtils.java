@@ -1,5 +1,6 @@
 package com.global.ecommerce.security;
 
+import com.global.ecommerce.service.authService.TokenInfoService;
 import com.global.ecommerce.service.authService.UserService;
 import io.jsonwebtoken.*;
 import lombok.NonNull;
@@ -21,6 +22,8 @@ public class JwtTokenUtils {
     private static Long REFRESH_TOKEN_VALIDITY;
     @Autowired
     UserService userService;
+    @Autowired
+    TokenInfoService tokenInfoService;
 
     public JwtTokenUtils(@Value("${auth.secret}") String secret, @Value("${auth.access.expiration}") Long accessValidity
             , @Value("${auth.refresh.expiration}") Long refreshValidity) {
@@ -58,8 +61,10 @@ public class JwtTokenUtils {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new RuntimeException("token not vaild");
         }
-
         final String jwt = authHeader.substring(7);
+        if(tokenInfoService.findByAccessToken(jwt).isEmpty()){
+            throw new RuntimeException("Token not existing");
+        }
         String userEmail= getUserNameFromToken(jwt);
         Long userId=userService.findByEmail(userEmail).getId();
         System.out.println(jwt);

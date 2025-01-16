@@ -40,7 +40,7 @@ public class User{
 
 //    @NotNull
     //Relation with wallet
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wallet_id",nullable = true)
     @ToString.Exclude
     private Wallet wallet;

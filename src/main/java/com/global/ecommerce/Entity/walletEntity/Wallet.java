@@ -29,7 +29,7 @@ public class Wallet {
     @JsonIgnore
     private User user;
 //    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, orphanRemoval = false)
-    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "wallet",cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JsonManagedReference
 //    @JsonIgnore
     private List<Transaction> transactions=new ArrayList<>();

@@ -15,7 +15,7 @@ public class UserResponseDto {
     private String fullName;
     private String email;
     private List<RoleModel> roles;
-    private Wallet wallet;
+//    private Wallet wallet;
     private boolean isEnabled;
 
     private boolean isCredentialsNonExpired;

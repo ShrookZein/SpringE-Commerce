@@ -49,7 +49,7 @@ public class RoleService {
     }
 
     public RoleModel save(RoleModel entity) {
-        log.info("Saving role: {}", entity);
+        log.info("Saving role: {}", entity.getName());
         RoleModel savedRole = roleRepo.save(entity);
         log.debug("Role saved successfully with ID: {}", savedRole.getId());
         return savedRole;

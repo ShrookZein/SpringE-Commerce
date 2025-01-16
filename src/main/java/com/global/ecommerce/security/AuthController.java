@@ -50,10 +50,10 @@ public class AuthController {
 
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestParam String refreshToken) {
+    public ResponseEntity<?> logout(@RequestParam String accessToken) {
 
-        authService.logoutUser(refreshToken);
+        authService.logoutUser(accessToken);
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok("Token Delete Successfully");
     }
 }

@@ -49,7 +49,7 @@ public class CartService {
         log.info("Adding item to cart. userId: {}, productId: {}, quantity: {}", userId, productId, quantity);
         ProductResponseDto productResponseDto = productService.getProductById(productId);
         Cart cart = getCartByUserId(userId).orElseGet(() -> createCart(userId));
-
+//      if product item already exist in cart will update his quantity
         for (CartItem item : cart.getCartItems()) {
             if (item.getProduct().getId().equals(productId)) {
                 item.setQuantity(item.getQuantity() + quantity);
